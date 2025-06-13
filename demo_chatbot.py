@@ -74,7 +74,7 @@ try:
     llm = ChatGoogleGenerativeAI(
         model="gemini-1.5-flash",
         google_api_key=os.getenv("GOOGLE_API_KEY"),
-        temperature=0.7
+        temperature=0.8
     )
 except Exception as e:
     st.error(f"Initialization failed: {e}")
@@ -93,6 +93,7 @@ Rules:
 - Confirm understanding: \"Got it?\", \"Sounds good? 😊\"
 - Add occasional emojis: ✅, 👍, 😊
 - Don’t include placeholders like [Zelle email], use actual info
+- For non-GED services: Politely inform we only handle GED exams.     
 
 Info:
 - Zelle: payments@gedassist.com (Daniel Smith)
@@ -241,9 +242,7 @@ def process_query(query):
 def main():
     if not st.session_state.history:
         greeting = random.choice([
-            "Hi there! 😊 What exam service do you need help with? (GED/GRE/Quizzes/etc)",
-            "Hey! 👋 Are you looking to get help with the GED exam?",
-            "Hello! Which exam are you interested in registering for?"
+            "Hi! Which exam service do you need help with? (Proctored Exam/Certification Exam/GED Exam/GRE Exam/Quizzes/Regular Timed Exam/Online Classes.)"
         ])
         st.session_state.history.append(f"Consultant: {greeting}")
         st.session_state.stage = ConversationStage.SERVICE_INQUIRY
