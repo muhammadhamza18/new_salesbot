@@ -1,0 +1,9 @@
+# Ignore everything
+*
+
+# But keep these files
+!demo_chatbot.py
+!requirements.txt
+
+# Gitignore file itself
+!.gitignore
